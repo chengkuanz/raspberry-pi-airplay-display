@@ -85,10 +85,10 @@ To automatically start the AirPlay receiver when the Raspberry Pi boots, create 
 ```bash
 sudo nano /etc/systemd/system/uxplay.service
 ```
-<img width="895" height="469" alt="Screenshot 2026-03-08 at 7 24 31 PM" src="https://github.com/user-attachments/assets/66fb131b-cc90-423e-b384-7edad11b523c" />
-
 
 ### Service Configuration
+
+<img width="783" height="357" alt="Screenshot 2026-03-08 at 7 29 17 PM" src="https://github.com/user-attachments/assets/5598ece4-8662-42fd-84cb-34fae908a84c" />
 
 Paste this into the file:
 
