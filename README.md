@@ -7,7 +7,8 @@ After setup, the flow is:
 `MacBook -> AirPlay -> Raspberry Pi running UxPlay -> HDMI display`
 
 The Raspberry Pi will start the AirPlay receiver automatically at boot.
-<img width="1470" height="956" alt="Screenshot 2026-03-08 at 5 08 34 PM copy" src="https://github.com/user-attachments/assets/74271894-c98f-4e75-9e62-7b407cd3f9fa" />
+<img width="1470" height="635" alt="Screenshot 2026-03-08 at 5 08 34 PM copy 2" src="https://github.com/user-attachments/assets/3b24e35e-525b-42e0-9daf-de169c618afd" />
+
 
 ## Hardware Requirements
 
@@ -84,6 +85,8 @@ To automatically start the AirPlay receiver when the Raspberry Pi boots, create 
 ```bash
 sudo nano /etc/systemd/system/uxplay.service
 ```
+<img width="895" height="469" alt="Screenshot 2026-03-08 at 7 24 31 PM" src="https://github.com/user-attachments/assets/66fb131b-cc90-423e-b384-7edad11b523c" />
+
 
 ### Service Configuration
 
@@ -138,7 +141,6 @@ This tells `systemd` to read the new `uxplay.service` file.
 sudo systemctl enable uxplay.service
 ```
 
-You should see messages about creating symlinks. That means the service is configured to start automatically.
 
 ## Start the Service Now (Without Rebooting)
 
@@ -163,6 +165,8 @@ Active: active (running)
 If you see that, UxPlay is running correctly as a service.
 
 To exit the status view, press `q`.
+<img width="788" height="171" alt="image" src="https://github.com/user-attachments/assets/beeee4a1-cd0f-4927-b39a-fa66cd08b567" />
+
 
 ## Reboot to Confirm Automatic Start
 
