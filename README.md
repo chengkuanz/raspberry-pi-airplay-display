@@ -34,7 +34,13 @@ Insert the card into the Raspberry Pi and boot.
 Open Terminal on the Raspberry Pi, or connect remotely over SSH:
 
 ```bash
-ping 192.168.5.148
+ping <PI_IP_ADDRESS>
+ssh <PI_USER>@<PI_IP_ADDRESS>
+```
+
+Example:
+
+```bash
 ssh cz@192.168.5.148
 ```
 
@@ -64,6 +70,12 @@ Check where `uxplay` is installed:
 which uxplay
 ```
 
+Expected output is usually:
+
+```text
+/usr/bin/uxplay
+```
+
 ## Create an Auto-Start Service
 
 To automatically start the AirPlay receiver when the Raspberry Pi boots, create a `systemd` service:
@@ -74,7 +86,7 @@ sudo nano /etc/systemd/system/uxplay.service
 
 ### Service Configuration
 
-Paste the following into the file:
+Paste this into the file:
 
 ```ini
 [Unit]
@@ -83,27 +95,31 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/bin/uxplay -fs -s2560x1440@30
+# Option 1 (recommended to start): fullscreen with default output mode
+ExecStart=/usr/bin/uxplay -fs
+
+# Option 2 (optional): fullscreen with explicit resolution/FPS
+# ExecStart=/usr/bin/uxplay -fs -s<WIDTHxHEIGHT@FPS>
+
 Restart=always
 RestartSec=5
-User=cz
+User=<PI_USER>
 Environment=DISPLAY=:0
 
 [Install]
 WantedBy=multi-user.target
 ```
 
+Replace placeholders before saving:
+
+- `<PI_USER>`: your Raspberry Pi username (for example, `cz` or `pi`).
+- `<WIDTHxHEIGHT@FPS>`: your target output mode (for example, `1920x1080@60`).
+
 Notes:
 
 - `-fs` runs UxPlay in fullscreen mode.
-- `-s2560x1440@30` sets the display resolution.
 - `Restart=always` restarts the service if it stops.
 - `DISPLAY=:0` sends output to the main display.
-
-Make sure:
-
-- Spacing between arguments is correct.
-- `User=...` matches your Raspberry Pi username.
 
 Save and exit Nano.
 
@@ -166,3 +182,48 @@ You should again see:
 ```text
 Active: active (running)
 ```
+
+## Troubleshooting
+
+If the service does not start or AirPlay is not visible, run:
+
+```bash
+systemctl status uxplay.service
+journalctl -u uxplay.service -b
+journalctl -u uxplay.service -f
+```
+
+Checks:
+
+- MacBook and Raspberry Pi are on the same network/subnet.
+- `User=<PI_USER>` is correct in the service file.
+- `uxplay` exists at `/usr/bin/uxplay`.
+- No typo in `ExecStart` arguments.
+
+## Disable or Uninstall the Service
+
+Disable and stop the service:
+
+```bash
+sudo systemctl disable --now uxplay.service
+```
+
+Remove the service file and reload `systemd`:
+
+```bash
+sudo rm /etc/systemd/system/uxplay.service
+sudo systemctl daemon-reload
+```
+
+(Optional) Remove UxPlay package:
+
+```bash
+sudo apt remove uxplay
+```
+
+## References
+
+- UxPlay project: <https://github.com/FDH2/UxPlay>
+- Raspberry Pi OS downloads: <https://www.raspberrypi.com/software/operating-systems/>
+- `systemd` service documentation: `man systemd.service`
+- `journalctl` documentation: `man journalctl`
