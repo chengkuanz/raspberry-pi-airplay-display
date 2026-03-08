@@ -7,6 +7,7 @@ After setup, the flow is:
 `MacBook -> AirPlay -> Raspberry Pi running UxPlay -> HDMI display`
 
 The Raspberry Pi will start the AirPlay receiver automatically at boot.
+<img width="1470" height="956" alt="Screenshot 2026-03-08 at 5 08 34 PM copy" src="https://github.com/user-attachments/assets/74271894-c98f-4e75-9e62-7b407cd3f9fa" />
 
 ## Hardware Requirements
 
