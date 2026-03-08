@@ -113,7 +113,7 @@ WantedBy=multi-user.target
 Replace placeholders before saving:
 
 - `<PI_USER>`: your Raspberry Pi username (for example, `cz` or `pi`).
-- `<WIDTHxHEIGHT@FPS>`: your target output mode (for example, `1920x1080@60`).
+- `<WIDTHxHEIGHT@FPS>`: your target output mode (for example, `1920x1080@60`, `2560x1440@30`).
 
 Notes:
 
