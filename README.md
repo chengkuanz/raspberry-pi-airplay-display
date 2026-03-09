@@ -121,25 +121,6 @@ sudo reboot
 After reboot, UxPlay should start automatically. Check Service Status if necessary. 
 
 
-<details>
-  <summary>Troubleshooting</summary>
-
-  If the service does not start or AirPlay is not visible, run:
-
-```bash
-systemctl status uxplay.service
-journalctl -u uxplay.service -b
-journalctl -u uxplay.service -f
-```
-
-Checks:
-
-- MacBook and Raspberry Pi are on the same network/subnet.
-- `User=<PI_USER>` is correct in the service file.
-- `uxplay` exists at `/usr/bin/uxplay`.
-- No typo in `ExecStart` arguments.
-
-</details>
 
 
 <details>
