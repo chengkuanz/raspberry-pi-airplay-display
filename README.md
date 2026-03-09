@@ -1,6 +1,6 @@
 # MacBook Screen Mirroring to Raspberry Pi Using AirPlay (UxPlay)
 
-This guide shows how to configuring a Raspberry Pi as an AirPlay receiver using UxPlay to mirror a MacBook, iPhone, or iPad to an HDMI display, effectively acting as a wireless external monitor. The Raspberry Pi will start the AirPlay receiver automatically at boot.
+This guide shows how to configuring a Raspberry Pi 4 as an AirPlay receiver using UxPlay to mirror a MacBook, iPhone, or iPad to an HDMI display, effectively acting as a wireless external monitor. The Raspberry Pi will start the AirPlay receiver automatically at boot.
 
 <img width="1470" height="635" alt="Screenshot 2026-03-08 at 5 08 34 PM copy 2" src="https://github.com/user-attachments/assets/3b24e35e-525b-42e0-9daf-de169c618afd" />
 
@@ -54,9 +54,8 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-
 # Fullscreen with explicit resolution/FPS
-# ExecStart=/usr/bin/uxplay -fs -s<WIDTHxHEIGHT@FPS>
+ExecStart=/usr/bin/uxplay -fs -s<WIDTHxHEIGHT@FPS>
 
 Restart=always
 RestartSec=5
@@ -167,6 +166,15 @@ sudo apt remove uxplay
 
 </details>
 
+## Prerequisites
+
+- Raspberry Pi 
+- MacBook, iPhone, or iPad with AirPlay support
+- Both devices connected to the same Wi-Fi network
+- HDMI display connected to the Raspberry Pi
+
+
 ## References
 
-- UxPlay project: <https://github.com/FDH2/UxPlay>
+- [UxPlay project ](https://github.com/FDH2/UxPlay "UxPlay GitHub repository")
+- [systemd service documentation](https://wiki.debian.org/systemd/Services "Debian systemd Services documentation")
