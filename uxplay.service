@@ -1,0 +1,14 @@
+[Unit]
+Description=uxplay AirPlay Receiver
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/uxplay -fs
+Restart=always
+RestartSec=5
+User=cz
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=multi-user.target
